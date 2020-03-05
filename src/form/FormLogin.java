@@ -5,6 +5,7 @@ import domain.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import session.Session;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -103,15 +104,23 @@ public class FormLogin extends javax.swing.JFrame {
         String username = txtUsername.getText().trim();
         String password = new String(pfPassword.getPassword());
         
+        if(!username.isEmpty() && !password.isEmpty() ){
         try {
             User user = Controller.getInstance().login(username, password);
+            Session.getInstance().setCurrentUser(user);
+            
+            
             JFrame formMain = new FormMain();
             formMain.setVisible(true);
-            
+            this.dispose();
+        
         } catch (Exception ex) {
             lblError.setText(ex.getMessage());
         }
-        
+        }
+        else{
+            lblError.setText("Username or password is empty");
+        }
         
         
 

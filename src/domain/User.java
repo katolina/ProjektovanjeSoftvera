@@ -10,7 +10,7 @@ package domain;
  * @author Korisnik
  */
 public class User {
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String firstName;
@@ -20,7 +20,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String password, String firstName, String lastName, String email) {
+    public User(int id, String username, String password, String firstName, String lastName, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -37,11 +37,11 @@ public class User {
         this.email = email;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

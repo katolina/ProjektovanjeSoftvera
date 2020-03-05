@@ -5,9 +5,15 @@
  */
 package controller;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import db.DBBroker;
+import domain.Manufacturer;
 import domain.Product;
 import domain.User;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import storage.StorageProduct;
 import storage.StorageUser;
@@ -17,13 +23,14 @@ import storage.StorageUser;
  * @author Korisnik
  */
 public class Controller {
-    
+    DBBroker db;
     private static Controller instance;
    
     private StorageUser storageUser;
     private StorageProduct storageProduct;
 
     public Controller() {
+        db = new DBBroker();
         storageUser = new StorageUser();
         storageProduct = new StorageProduct();
     }
@@ -45,7 +52,9 @@ public class Controller {
     }
     
     public User login(String username, String password) throws Exception{
-        List<User> users = storageUser.getAll();
+        
+       
+        List<User> users = getAllUsers();
         for(User user: users){
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
             return user;
@@ -55,6 +64,43 @@ public class Controller {
             }
         }
         throw new Exception("ERROR");
+        
+    }
+
+    public List<Manufacturer> getAllManufacturer() {
+        List<Manufacturer> manufacturers = new ArrayList<>();
+        
+        try {
+            db.loadDriver();
+            db.openConnection();
+            
+             manufacturers = db.getAllManufacturer();
+                    
+                    
+                   
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return manufacturers;
+    }
+
+    private List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try {
+            db.loadDriver(); 
+            db.openConnection();
+            users = db.getAllUsers();
+            
+            db.closeConnection();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        
+      
+        return users;
         
     }
     

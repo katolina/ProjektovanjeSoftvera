@@ -14,18 +14,18 @@ public class Product {
     private String name;
     private int quantity;
     private MeasurementUnit measurementUnit;
-    private double priceWithVAT;
+    private Manufacturer manufacturer;
     private double priceWithoutVAT;
 
     public Product() {
     }
 
-    public Product(int ID, String name, int quantity, MeasurementUnit measurementUnit, double priceWithVAT, double priceWithoutVAT) {
+    public Product(int ID, String name, int quantity, MeasurementUnit measurementUnit, Manufacturer manufacturer, double priceWithoutVAT) {
         this.ID = ID;
         this.name = name;
         this.quantity = quantity;
         this.measurementUnit = measurementUnit;
-        this.priceWithVAT = priceWithVAT;
+        this.manufacturer = manufacturer;
         this.priceWithoutVAT = priceWithoutVAT;
     }
 
@@ -69,13 +69,14 @@ public class Product {
         this.measurementUnit = measurementUnit;
     }
 
-    public double getPriceWithVAT() {
-        return priceWithVAT;
+    public Manufacturer getManufacturer() {
+        return manufacturer;
     }
 
-    public void setPriceWithVAT(double priceWithVAT) {
-        this.priceWithVAT = priceWithVAT;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
-    
+
+  
     
 }

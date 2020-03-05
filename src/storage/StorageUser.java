@@ -18,9 +18,9 @@ public class StorageUser {
 
     public StorageUser() {
         users = new ArrayList<>();
-        users.add(new User(1l, "kata", "kata123","Katica","Milicevic", "kmilicevic@gmail.com"));
-        users.add(new User(2l, "mariola", "mariola123","Marija","Savkovic", "msavkovic@gmail.com"));
-        users.add(new User(3l, "dule", "dule123","Dusan","Milicevic", "dmilicevic@gmail.com"));
+        users.add(new User(1, "kata", "kata123","Katica","Milicevic", "kmilicevic@gmail.com"));
+        users.add(new User(2, "mariola", "mariola123","Marija","Savkovic", "msavkovic@gmail.com"));
+        users.add(new User(3, "dule", "dule123","Dusan","Milicevic", "dmilicevic@gmail.com"));
     }
 
     public List<User> getAll() {

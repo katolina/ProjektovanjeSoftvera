@@ -13,9 +13,11 @@ import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
+import session.Session;
 import tables.ProductTableModel;
 
 
@@ -75,6 +77,11 @@ public class FormProductSearch extends javax.swing.JDialog {
         ScrollPane.setViewportView(tblProductSearch);
 
         btnDetails.setText("Details...");
+        btnDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,6 +106,12 @@ public class FormProductSearch extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
+        int red = tblProductSearch.getSelectedRow();
+        Session.getInstance().setFormMode(FormMode.VIEW);
+        //Pogledaj da li FormNewProduct treba da bude JDialog ili JFrame i popuni formu sa tim proizvodom izabranim
+    }//GEN-LAST:event_btnDetailsActionPerformed
 
    
 

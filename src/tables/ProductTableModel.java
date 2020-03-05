@@ -5,6 +5,7 @@
  */
 package tables;
 
+import domain.Manufacturer;
 import domain.MeasurementUnit;
 import domain.Product;
 import java.util.List;
@@ -17,8 +18,8 @@ import javax.swing.table.AbstractTableModel;
 public class ProductTableModel extends AbstractTableModel{
     
     private final List<Product> products;
-    private final String[] columns = new String[]{"ID","Name","Quantity","MeasurementUnit","Price with VAT","Price without VAT"};
-    private final Class[] columnsType = new Class[]{int.class, String.class, int.class, MeasurementUnit.class, double.class,double.class};
+    private final String[] columns = new String[]{"ID","Name","Quantity","MeasurementUnit","Manufacturer","Price without VAT"};
+    private final Class[] columnsType = new Class[]{int.class, String.class, int.class, MeasurementUnit.class, Manufacturer.class,double.class};
     
     
     public ProductTableModel(List<Product> products) {
@@ -48,7 +49,7 @@ public class ProductTableModel extends AbstractTableModel{
             case 1: return product.getName();
             case 2: return product.getQuantity(); 
             case 3: return product.getMeasurementUnit(); 
-            case 4: return product.getPriceWithVAT(); 
+            case 4: return product.getManufacturer(); 
             case 5: return product.getPriceWithoutVAT(); 
             default: return "N/A";
         }
@@ -70,13 +71,17 @@ public class ProductTableModel extends AbstractTableModel{
         
         switch(column){
             case 2: 
-                product.setQuantity(new Integer((int) value));
+                String quantity = (String) value;
+                int quanti = Integer.parseInt(quantity);
+                product.setQuantity(quanti);
             break;
             case 3: 
+                //String mu = (String) value;
+                
                 product.setMeasurementUnit((MeasurementUnit) value);
             break;
             case 4: 
-                product.setPriceWithVAT(new Double(value.toString()));
+               
             break;
             case 5: 
                 product.setPriceWithoutVAT((double) value);

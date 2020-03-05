@@ -6,7 +6,9 @@
 package form;
 
 import controller.Controller;
+import domain.User;
 import javax.swing.JDialog;
+import session.Session;
 
 /**
  *
@@ -20,7 +22,7 @@ public class FormMain extends javax.swing.JFrame {
      */
     public FormMain() {
         initComponents();
-        
+        adjustCurrentUser(Session.getInstance().getCurrentUser());
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         
@@ -36,6 +38,7 @@ public class FormMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblCurrentUser = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmenuNew = new javax.swing.JMenuItem();
@@ -44,6 +47,8 @@ public class FormMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(new java.awt.Color(255, 0, 51));
+
+        lblCurrentUser.setText("Current user: ");
 
         jMenu1.setText("Product");
 
@@ -74,17 +79,24 @@ public class FormMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCurrentUser, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblCurrentUser)
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNewActionPerformed
+        Session.getInstance().setFormMode(FormMode.NEW);
         JDialog formNewProduct = new FormNewProduct(this, true);
         formNewProduct.setVisible(true);
     }//GEN-LAST:event_jmenuNewActionPerformed
@@ -103,5 +115,10 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JMenu jmenuAbout;
     private javax.swing.JMenuItem jmenuNew;
     private javax.swing.JMenuItem jmenuSearch;
+    private javax.swing.JLabel lblCurrentUser;
     // End of variables declaration//GEN-END:variables
+
+    private void adjustCurrentUser(User currentUser) {
+        lblCurrentUser.setText(lblCurrentUser.getText() + currentUser.getFirstName() + " " + currentUser.getLastName());
+    }
 }
